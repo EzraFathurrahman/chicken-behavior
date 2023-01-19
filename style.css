@@ -1,0 +1,116 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: poppins,sans-serif;
+    overflow: hidden;
+}
+
+a{
+    text-decoration: none;
+    list-style-type: none;
+    color: aliceblue;
+}
+/* NAV */
+.container{
+    width: 1380px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap:400px;
+    background-color:#171d29 ;
+    color: aliceblue;
+}
+.logo{
+    display: flex;
+    width:200px;
+    justify-content: center;
+}
+
+
+.nav {
+    display: flex;
+    justify-content: center;
+
+    
+    padding: 10px;
+}
+h2 .title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+.logo img{
+    width:80px;
+    height:75px;
+    
+}
+
+/* Content */
+.content{
+    display: flex;
+}
+/* Menu */
+.menu{
+    height: 800px;
+    width:200px;
+    text-align: center;
+    padding-top: 20px;
+    background-color: #202938;
+    
+}
+.menu li{
+    list-style-type: none;
+    padding: 10px;
+
+    border-radius: 5px;
+    color:aliceblue
+}
+.menu li:hover{
+    background-color:#1E377A ;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* MAIN CONTENT */
+.main{
+    display:block;
+    margin: auto;
+    left: 0;
+    width:1200px;
+    height:600px;
+    
+    text-align: center;
+}
+.main h3{
+    padding: 10px;
+}
+.main p{
+    padding: 10px;
+}
+.btn{
+    margin: 10px;
+    padding: 10px;
+    border-radius:5px;
+    display: inline;
+    background-color: #202938;
+    color: aliceblue;
+}
+.btn:hover{
+    background-color: #1E377A;
+    cursor: pointer;
+}
+.main-behavior h2{
+    margin:30px;
+}
+
+
+
