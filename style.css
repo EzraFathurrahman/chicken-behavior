@@ -112,9 +112,68 @@ h2 .title{
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
+.btn-submit{
+    width:1050px;
+    margin: 10px;
+    padding: 10px;
+    border-radius:5px;
+    display: inline;
+    background-color: #1e5e28;
+    color: aliceblue;
+    font-weight: 600;
+}
+.btn-submit:hover{
+    background-color: #665f7a;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
 .main-behavior h2{
     margin:30px;
 }
 
+/*FILE UPLOAD*/
+.file-drop-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 1050px;
+    height: 200px;
+    max-width: 100%;
+    left: 10px;
+    padding: 25px;
+    border: 1px dashed rgba(174, 9, 9, 0.758);
+    border-radius: 3px;
+    transition: 0.2s;
+    &:active {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+}
+.fake-btn {
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(238, 29, 29, 0.1);
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.file-msg {
+    font-size: small;
+    font-weight: 300;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
 
 
