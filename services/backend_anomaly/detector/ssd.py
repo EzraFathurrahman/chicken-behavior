@@ -5,8 +5,8 @@ from datetime import datetime
 import cv2
 import dlib
 from imutils.video import VideoStream
-from chicken_behaviour.tracker.centroidtracker import CentroidTracker
-from chicken_behaviour.tracker.trackableobject import TrackableObject
+from services.backend_anomaly.tracker.centroidtracker import CentroidTracker
+from services.backend_anomaly.tracker.trackableobject import TrackableObject
 
 class MobileNetSSD:
     """
@@ -17,7 +17,7 @@ class MobileNetSSD:
         """
         Initialize the model by returning a pretrained model.
         """
-        self.net = cv2.dnn.readNetFromCaffe('chicken_behaviour/detector/mobilenet_ssd/MobileNetSSD_deploy.prototxt', 'chicken_behaviour/detector/mobilenet_ssd/MobileNetSSD_deploy.caffemodel')
+        self.net = cv2.dnn.readNetFromCaffe('services/backend_anomaly/detector/mobilenet_ssd/MobileNetSSD_deploy.prototxt', 'services/backend_anomaly/detector/mobilenet_ssd/MobileNetSSD_deploy.caffemodel')
         self.video_stream = video.get_video_stream()
         self.trackers = []
         self.rects = []
@@ -111,4 +111,5 @@ class MobileNetSSD:
     
     def save_output(self):
         data = pd.DataFrame(self.tabular_output)
-        data.to_csv('D:/Read Paper/Program/chicken_behaviour/results/tabular_output.csv', index = False)
+        
+        return data

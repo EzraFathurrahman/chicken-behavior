@@ -11,11 +11,12 @@ def split_object_id(file_path):
     unique_values = df[column_to_split].unique()
 
     labels = []
+    df_by_object = []
 
     for label in unique_values:
         df_label = df[df[column_to_split] == label]
         df_label = df_label.iloc[:, 3:]
         labels.append(label)
-        df_label.to_csv("D:/Read Paper/Program/chicken_behaviour/results/object_detected/{}.csv".format(label), index = False)
+        df_by_object.append(df_label)
     
-    return labels
+    return labels, df_by_object

@@ -17,5 +17,5 @@ def max_min_runtime(file_path):
 
     bersih = hasil.drop_duplicates()
 
-    bersih.to_csv("D:/Read Paper/Program/chicken_behaviour/results/max_min_runtime.csv", index = False)
+    return bersih
 

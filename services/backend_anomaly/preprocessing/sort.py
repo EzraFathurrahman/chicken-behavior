@@ -28,4 +28,4 @@ def sort(file_path):
     #data.insert(3, "Frame", frame)
     data.sort_values(by = ["Object_ID", "Frame"], inplace=True)
 
-    data.to_csv("D:/Read Paper/Program/chicken_behaviour/results/tabular_output_sorted.csv", index = False)
+    return data

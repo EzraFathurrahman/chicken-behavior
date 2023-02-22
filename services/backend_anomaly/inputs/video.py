@@ -13,7 +13,7 @@ class Video:
         
         """
         self.video_stream = cv2.VideoCapture(video_path)
-        self.video_output = ('D:/Read Paper/Program/chicken_behaviour/results/output_video.mp4')
+        self.video_output = ('temp/video_output.mp4')
         self.writer = None
         self.W = None
         self.H = None
@@ -43,8 +43,7 @@ class Video:
             fourcc = cv2.VideoWriter_fourcc(*"mp4v")
             self.writer = cv2.VideoWriter(self.video_output, fourcc, 15, (self.W, self.H))
 
-        return dict({"total_frame" : self.totalFrames, "frame" : frame, "width" : self.W, 
-        "height" : self.H})
+        return dict({"total_frame" : self.totalFrames, "frame" : frame, "width" : self.W,  "height" : self.H})
 
     def write(self, frame):
         """
