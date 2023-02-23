@@ -46,8 +46,8 @@ def make_segments(x, y):
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
     return segments
 
-def make_plot(file_path):
-    data = pd.read_csv(file_path)
+def make_plot(file_path, i):
+    data = file_path
     N = 10
     np.random.seed(101)
     x = data["cX"]
@@ -84,4 +84,4 @@ def make_plot(file_path):
     colorline(x, y, z, cmap=plt.get_cmap('plasma'), linewidth=2)
     plt.colorbar(col, format="%d")
 
-    plt.show()
+    plt.savefig("static/temp/{}.png".format(i))

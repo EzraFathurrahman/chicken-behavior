@@ -6,7 +6,7 @@ import numpy as np
 
 def sort(file_path):
     colnames = ["time", "runtime", "Object_ID", "Frame", "cX", "cY"]
-    data = pd.read_csv(file_path, names = colnames)
+    data = file_path
     data.columns = colnames
 
     runtime = data["runtime"].tolist()

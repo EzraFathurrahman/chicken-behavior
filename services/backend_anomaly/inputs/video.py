@@ -13,7 +13,7 @@ class Video:
         
         """
         self.video_stream = cv2.VideoCapture(video_path)
-        self.video_output = ('temp/video_output.mp4')
+        self.video_output = ('static/temp/video_output.mp4')
         self.writer = None
         self.W = None
         self.H = None
@@ -34,7 +34,7 @@ class Video:
         if frame[1] is None:
             return False
         
-        frame = imutils.resize(frame[1], width=1280, height=720)
+        frame = imutils.resize(frame[1], width = frame[1].shape[1])
 
         if self.W is None or self.H is None:
             (self.H, self.W) = frame.shape[:2]

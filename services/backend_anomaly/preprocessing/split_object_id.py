@@ -1,7 +1,7 @@
 import pandas as pd
 
 def split_object_id(file_path):
-    df = pd.read_csv(file_path)
+    df = file_path
 
     columns = df.columns.values.tolist()
     columns_list = list(columns)

@@ -37,9 +37,9 @@ def anomaly():
 @app.route("/anomaly-result", methods = ['POST'])
 def anomaly_result():
     f = request.files['file']
-    f.save('temp/{}'.format(f.filename))
+    f.save('static/temp/{}'.format(f.filename))
     
-    video = Video('temp/{}'.format(f.filename))
+    video = Video('static/temp/{}'.format(f.filename))
     net = MobileNetSSD(video)
     skip_frames = 30
     
@@ -61,10 +61,11 @@ def anomaly_result():
 
     data = net.save_output()
 
-    #data_sorted = sort(data)
-    #ids, dataframes = split_object_id(data_sorted)
-    #for i in ids:
-    #    make_plot(dataframes[i])
+    data_sorted = sort(data)
+    ids, dataframes = split_object_id(data_sorted)
+    for i in ids:
+        dataframes[i] = dataframes[i].reset_index().drop(["index"], axis = 1)
+        make_plot(dataframes[i], i)
     
     #max_min_result = max_min_runtime(data)
     #isolation_result = isolation_forest(max_min_result)

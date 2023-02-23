@@ -1,7 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-
 
 *{
     margin:0;
@@ -12,7 +9,6 @@ body{
     font-family: poppins,sans-serif;
     overflow: hidden;
 }
-
 a{
     text-decoration: none;
     list-style-type: none;
@@ -34,44 +30,37 @@ a{
     width:200px;
     justify-content: center;
 }
-
-
 .nav {
     display: flex;
     justify-content: center;
-
-    
     padding: 10px;
 }
 h2 .title{
     display: flex;
     justify-content: center;
-    text-align: center;
-    
+    text-align: center;   
 }
 .logo img{
     width:80px;
-    height:75px;
-    
+    height:75px; 
 }
 
 /* Content */
 .content{
     display: flex;
 }
+
 /* Menu */
 .menu{
     height: 800px;
     width:200px;
     text-align: center;
     padding-top: 20px;
-    background-color: #202938;
-    
+    background-color: #202938;   
 }
 .menu li{
     list-style-type: none;
     padding: 10px;
-
     border-radius: 5px;
     color:aliceblue
 }
@@ -89,7 +78,6 @@ h2 .title{
     left: 0;
     width:1200px;
     height:600px;
-    
     text-align: center;
 }
 .main h3{
@@ -126,6 +114,11 @@ h2 .title{
     background-color: #665f7a;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+}
+.main-behaviour {
+    width : 1070px;
+    height: 1000px;
+    overflow: auto;
 }
 .main-behavior h2{
     margin:30px;
@@ -176,4 +169,48 @@ h2 .title{
     opacity: 0;
 }
 
-
+/*ANOMALY RESULT*/
+.video-result {
+    display: flex;
+    width : 1100px;
+    padding-top: 20px;
+    flex-direction: column;
+    justify-content : center;
+    align-items : center;
+}
+.picture-result {
+    display: flex;
+    width : 1100px;
+    padding-top: 30px;
+    flex-direction: column;
+    justify-content : center;
+    align-items : center;
+}
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+.mySlides {
+    display: none;
+}
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.graph {
+    vertical-align: middle;
+}
