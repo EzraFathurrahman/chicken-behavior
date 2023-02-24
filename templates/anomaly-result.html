@@ -10,10 +10,12 @@
 </head>
 <body>
   <div class="container">
-        <a href="{{url_for('index')}}" class="logo"><img src="static/img/logo.png" alt="Logo IPB"></a>
-            <div class="nav">
-                <h2 class="title">Chicken Behavior Detector</h2>
-            </div>        
+        <div class = "logo-container">
+            <a href="{{url_for('index')}}" class="logo"><img src="static/img/logo.png" alt="Logo IPB"></a>
+        </div>
+        <div class="nav">
+            <h2>Chicken Behavior Detector</h2>
+        </div>       
     </div>
     <div class="content">
         <div class="menu">
@@ -45,6 +47,16 @@
                     <span class="dot" onclick="currentSlide(2)"></span> 
                     <span class="dot" onclick="currentSlide(3)"></span> 
                 </div>
+            </div>
+            <div class = "table-result">
+                <h2>Tabel Deteksi Anomali Objek</h2>
+                <table>
+                    <tr>
+                        <th>Company</th>
+                        <th>Contact</th>
+                        <th>Country</th>
+                      </tr>
+                </table>
             </div>
         </div>
     </div>

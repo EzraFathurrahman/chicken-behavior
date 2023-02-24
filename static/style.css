@@ -16,13 +16,12 @@ a{
 }
 /* NAV */
 .container{
-    width: 1380px;
-    height: 100px;
+    width: 100%;
+    height: 20vh;
     display: flex;
     align-items: center;
     gap:400px;
     background-image: linear-gradient(145deg, #171d29,#252e3d,#665f7a);
-    /* background-color:#171d29 ; */
     color: aliceblue;
 }
 .logo{
@@ -33,27 +32,30 @@ a{
 .nav {
     display: flex;
     justify-content: center;
-    padding: 10px;
-}
-h2 .title{
-    display: flex;
-    justify-content: center;
-    text-align: center;   
+    text-align: center;
 }
 .logo img{
     width:80px;
     height:75px; 
 }
+.logo-container {
+    display : flex;
+    width: 20%;
+    justify-content: center;
+}
 
 /* Content */
 .content{
     display: flex;
+    height : 100%;
 }
 
 /* Menu */
 .menu{
-    height: 800px;
-    width:200px;
+    display: flex;
+    height: 100vh;
+    width: 20%;
+    justify-content: center;
     text-align: center;
     padding-top: 20px;
     background-color: #202938;   
@@ -73,11 +75,12 @@ h2 .title{
 
 /* MAIN CONTENT */
 .main{
-    display:block;
+    display : block;
     margin: auto;
-    left: 0;
-    width:1200px;
-    height:600px;
+    padding-top: 10%;
+    width : 100vh;
+    height : 100vh;
+    justify-content: center;
     text-align: center;
 }
 .main h3{
@@ -116,8 +119,11 @@ h2 .title{
     transition: background-color 0.3s ease-in-out;
 }
 .main-behaviour {
-    width : 1070px;
-    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    width : 100%;
+    height : 100vh;
+    padding-left : 20%;
     overflow: auto;
 }
 .main-behavior h2{
@@ -172,17 +178,25 @@ h2 .title{
 /*ANOMALY RESULT*/
 .video-result {
     display: flex;
-    width : 1100px;
-    padding-top: 20px;
     flex-direction: column;
+    width : 100vh;
+    padding-top: 20px;
     justify-content : center;
     align-items : center;
 }
 .picture-result {
     display: flex;
-    width : 1100px;
-    padding-top: 30px;
     flex-direction: column;
+    width : 100vh;
+    padding-top: 30px;
+    justify-content : center;
+    align-items : center;
+}
+.table-result {
+    display: flex;
+    flex-direction: column;
+    width : 100vh;
+    padding-top: 20px;
     justify-content : center;
     align-items : center;
 }
