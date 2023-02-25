@@ -8,6 +8,7 @@
     </title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
+    <script src="{{url_for('static', filename = 'functions.js')}}"></script>
 </head>
 <body>
     <div class="container">
@@ -21,20 +22,21 @@
     <div class="content">
         <div class="menu">
             <ul>
-                <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a> </li>
-                <li><a href="{{url_for('feed')}}">Feeding Behavior</a> </li>
-                <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
+                <li><a href = "{{url_for('aggressive')}}">Agressive Behavior</a> </li>
+                <li><a href = "{{url_for('feed')}}">Feeding Behavior</a> </li>
+                <li><a href = "{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
             </ul>
         </div>
-        <div class="main-behaviour">
+        <div class = "main-behaviour">
             <h2>Deteksi Anomali Pergerakan Ayam</h2>
-            <form method="post" action="/anomaly-result" enctype="multipart/form-data">
-                <div class="file-drop-area">
-                    <span class="fake-btn">Upload Video</span>
-                    <span class="file-msg">or drag and drop files here</span>
-                    <input type = "file" name = "file" class = "file-input">
+            <form id = "video-form" onsubmit = "check_submission_conditions(event)" method = "post" action = '/anomaly-result' enctype = "multipart/form-data">
+                <div id = "drop-area" class = "file-drop-area">
+                    <span class = "fake-btn">Upload Video</span>
+                    <span class = "file-msg">or drag and drop files here</span>
+                    <input type = "file" id = "video-input" name = "file" class = "file-input" oninput = "change_attachment_text()">
                 </div>
-                <input type="submit" value="Submit" class="btn-submit">
+                <span id = "attachment-text">No video file attached!</span>
+                <input type = "submit" value = "Submit" class = "btn-submit">
             </form>
         </div>
     </div>
