@@ -218,19 +218,36 @@ a {
   align-items: center;
 }
 .slideshow-container {
-  max-width: 1000px;
+  display: flex;
   position: relative;
   margin: auto;
 }
+.slide-button {
+  padding-top: 2%;
+  border: none;
+  background: none;
+}
+.prev-image{
+  width: 100px;
+  height : 100px;
+  cursor: pointer;
+}
+.next-image {
+  width: 100px;
+  height : 100px;
+  cursor: pointer;
+}
 .mySlides {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 .numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+  color: #000000;
+  font-size: 100%;
+  padding-left: 42.5%;
 }
 .dot {
   cursor: pointer;
@@ -252,7 +269,4 @@ a {
   padding-top: 30px;
   justify-content: center;
   align-items: center;
-}
-.extras {
-  height: 100px;
 }

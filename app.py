@@ -70,4 +70,4 @@ def anomaly_result():
     #max_min_result = max_min_runtime(data)
     #isolation_result = isolation_forest(max_min_result)
 
-    return render_template('anomaly-result.html')
+    return render_template('anomaly-result.html', id_length = len(ids))

@@ -7,6 +7,7 @@
     <title>Chicken Behavior Detector </title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
+    <script src="{{url_for('static', filename = 'functions.js')}}"></script>
 </head>
 <body>
     <div class="container">
@@ -35,12 +36,16 @@
             <div class = "picture-result">
                 <h2>Grafik Pergerakan Ayam</h2>
                 <div class="slideshow-container">
+                    <button class = "slide-button">
+                        <img id = "button-prev"  class = "prev-image" src = "static/img/previous-button.png" onclick = "prev_slide({{id_length}}, document.getElementById('object-id').innerHTML)">
+                    </button>
                     <div class="mySlides">
-                        <div class="numbertext">1 / 3</div>
-                        <img class = "graph" src="static/temp/0.png">
+                        <span id = "object-id" class="numbertext">ID 0</span>
+                        <img id = "object-plot" class = "image-plot" src="static/temp/0.png">
                     </div>
-                    <a class="prev" onclick="plusSlides(-1)">Previous</a>
-                    <a class="next" onclick="plusSlides(1)">Next</a>
+                    <button class = "slide-button">
+                        <img id = "button-next" class = "next-image" src = "static/img/next-button.png" onclick = "next_slide({{id_length}}, document.getElementById('object-id').innerHTML)">
+                    </button>
                 </div>
             </div>
             <div class = "table-result">
@@ -75,34 +80,5 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-        
-        function plusSlides(n) {
-          showSlides(slideIndex += n);
-        }
-        
-        function currentSlide(n) {
-          showSlides(slideIndex = n);
-        }
-        
-        function showSlides(n) {
-          let i;
-          let slides = document.getElementsByClassName("mySlides");
-          let dots = document.getElementsByClassName("dot");
-          if (n > slides.length) {slideIndex = 1}    
-          if (n < 1) {slideIndex = slides.length}
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-          }
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";  
-          dots[slideIndex-1].className += " active";
-        }
-    </script>
 </body>
 </html>
