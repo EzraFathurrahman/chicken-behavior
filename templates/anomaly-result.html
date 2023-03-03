@@ -52,31 +52,28 @@
                 <h2>Tabel Deteksi Anomali Objek</h2>
                 <table>
                     <tr>
-                        <th>Company</th>
-                        <th>Contact</th>
-                        <th>Country</th>
+                        <th>ID</th>
+                        <th>First Occurance</th>
+                        <th>Last Occurance</th>
+                        <th>Detection Time</th>
+                        <th>Anomaly</th>
                     </tr>
+                    {% for i in range(id_length) %}
                     <tr>
-                        <td>Company</td>
-                        <td>Contact</td>
-                        <td>Country</td>
+                        <td>{{id[i]}}</td>
+                        <td>{{first[i]}}</td>
+                        <td>{{last[i]}}</td>
+                        <td>{{period[i]}}</td>
+                        <td>{{anomaly[i]}}</td>
                     </tr>
-                    <tr>
-                        <td>Company</td>
-                        <td>Contact</td>
-                        <td>Country</td>
-                    </tr>
-                    <tr>
-                        <td>Company</td>
-                        <td>Contact</td>
-                        <td>Country</td>
-                    </tr>
-                    <tr>
-                        <td>Company</td>
-                        <td>Contact</td>
-                        <td>Country</td>
-                    </tr>
+                    {% endfor %}
                 </table>
+            </div>
+            <div class = "footer">
+                <footer class = "footer-content">
+                    <p>Author : Computer System and Network Institut Pertanian Bogor</p>
+                    <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
+                </footer>
             </div>
         </div>
     </div>

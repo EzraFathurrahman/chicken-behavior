@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from subprocess import call
 from services.backend_anomaly.detector.ssd import MobileNetSSD
 from services.backend_anomaly.inputs.video import Video
 from services.backend_anomaly.preprocessing.sort import sort
@@ -11,12 +10,6 @@ from services.backend_anomaly.anomaly_detection.isolation_forest import isolatio
 ALLOWED_EXTENSIONS = 'mp4'
 
 app = Flask(__name__)
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def convert_avi_to_mp4(avi_file_path):
-    os.popen("ffmpeg -i {} -ac 2 -b:v 2000k -c:a aac -c:v libx264 -b:a 160k -vprofile high -bf 0 -strict experimental -f mp4 temp/output_mp4.mp4".format(avi_file_path))
 
 @app.route("/")
 def index():
@@ -67,7 +60,7 @@ def anomaly_result():
         dataframes[i] = dataframes[i].reset_index().drop(["index"], axis = 1)
         make_plot(dataframes[i], i)
     
-    #max_min_result = max_min_runtime(data)
-    #isolation_result = isolation_forest(max_min_result)
+    max_min_result = max_min_runtime(data)
+    isolation_result = isolation_forest(max_min_result)
 
-    return render_template('anomaly-result.html', id_length = len(ids))
+    return render_template('anomaly-result.html', id_length = len(ids), id = ids, first = isolation_result['first_occurrence'].values.tolist(), last = isolation_result['last_occurrence'].values.tolist(), period = isolation_result['period_detected'].values.tolist(), anomaly = isolation_result['anomaly_score'].values.tolist())
