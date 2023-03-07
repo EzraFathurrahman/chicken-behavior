@@ -46,7 +46,7 @@ def make_segments(x, y):
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
     return segments
 
-def make_plot(file_path, i):
+def make_plot(file_path, i, session_id):
     data = file_path
     N = 10
     np.random.seed(101)
@@ -84,4 +84,4 @@ def make_plot(file_path, i):
     colorline(x, y, z, cmap=plt.get_cmap('plasma'), linewidth=2)
     plt.colorbar(col, format="%d")
 
-    plt.savefig("static/temp/{}.png".format(i))
+    plt.savefig("static/temp/{}_{}.png".format(session_id, i))

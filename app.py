@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import os, random, string
 from services.backend_anomaly.detector.ssd import MobileNetSSD
 from services.backend_anomaly.inputs.video import Video
 from services.backend_anomaly.preprocessing.sort import sort
@@ -7,9 +8,22 @@ from services.backend_anomaly.preprocessing.split_object_id import split_object_
 from services.backend_anomaly.preprocessing.plot import make_plot
 from services.backend_anomaly.anomaly_detection.isolation_forest import isolation_forest
 
-ALLOWED_EXTENSIONS = 'mp4'
-
 app = Flask(__name__)
+
+def convert_avi_to_mp4(avi_file_path, output_name):
+    os.system('ffmpeg -i {} {}'.format(avi_file_path, output_name))
+    return True
+
+def get_session_id():
+    character_list = ""
+    character_list += string.ascii_letters
+    character_list += string.digits
+    
+    session_id = ""
+    for i in range(16):
+        session_id += random.choice(character_list)
+    
+    return session_id
 
 @app.route("/")
 def index():
@@ -30,9 +44,10 @@ def anomaly():
 @app.route("/anomaly-result", methods = ['POST'])
 def anomaly_result():
     f = request.files['file']
-    f.save('static/temp/{}'.format(f.filename))
+    session_id = get_session_id()
+    f.save('static/temp/{}_{}'.format(session_id, f.filename))
     
-    video = Video('static/temp/{}'.format(f.filename))
+    video = Video('static/temp/{}_{}'.format(session_id, f.filename))
     net = MobileNetSSD(video)
     skip_frames = 30
     
@@ -52,15 +67,21 @@ def anomaly_result():
     
     video.stop()
 
+    convert_avi_to_mp4('static/temp/{}_output.avi'.format(session_id), 'static/temp/{}_output.mp4'.format(session_id))
+
     data = net.save_output()
 
     data_sorted = sort(data)
     ids, dataframes = split_object_id(data_sorted)
     for i in ids:
         dataframes[i] = dataframes[i].reset_index().drop(["index"], axis = 1)
-        make_plot(dataframes[i], i)
+        make_plot(dataframes[i], i, session_id)
+
     
     max_min_result = max_min_runtime(data)
     isolation_result = isolation_forest(max_min_result)
 
-    return render_template('anomaly-result.html', id_length = len(ids), id = ids, first = isolation_result['first_occurrence'].values.tolist(), last = isolation_result['last_occurrence'].values.tolist(), period = isolation_result['period_detected'].values.tolist(), anomaly = isolation_result['anomaly_score'].values.tolist())
+    os.remove('static/temp/{}_{}'.format(session_id, f.filename))
+    os.remove('static/temp/{}_output.avi'.format(session_id))
+
+    return render_template('anomaly-result.html', session_id = session_id, video_source = 'static/temp/{}_output.mp4'.format(session_id), first_image_source = 'static/temp/{}_0.png'.format(session_id), id_length = len(ids), id = ids, first = isolation_result['first_occurrence'].values.tolist(), last = isolation_result['last_occurrence'].values.tolist(), period = isolation_result['period_detected'].values.tolist(), anomaly = isolation_result['anomaly_score'].values.tolist())

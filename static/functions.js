@@ -15,30 +15,30 @@ function check_submission_conditions(event){
     }
 }
 
-function prev_slide(length, id){
+function prev_slide(length, id, session_id){
     id = parseInt(id.split(" ")[1], 10);
     if (id == 0)
     {
         document.getElementById("object-id").innerHTML = `ID ${length - 1}`;
-        document.getElementById("object-plot").src = `static/temp/${length - 1}.png`;
+        document.getElementById("object-plot").src = `static/temp/${session_id}_${length - 1}.png`;
     }
     else
     {
         document.getElementById("object-id").innerHTML = `ID ${id - 1}`;
-        document.getElementById("object-plot").src = `static/temp/${id - 1}.png`;
+        document.getElementById("object-plot").src = `static/temp/${session_id}_${id - 1}.png`;
     }
 }
 
-function next_slide(length, id){
+function next_slide(length, id, session_id){
     id = parseInt(id.split(" ")[1], 10);
     if (id == length - 1)
     {
         document.getElementById("object-id").innerHTML = "ID 0";
-        document.getElementById("object-plot").src = "static/temp/0.png";
+        document.getElementById("object-plot").src = `static/temp/${session_id}_0.png`;
     }
     else
     {
         document.getElementById("object-id").innerHTML = `ID ${id + 1}`;
-        document.getElementById("object-plot").src = `static/temp/${id + 1}.png`;
+        document.getElementById("object-plot").src = `static/temp/${session_id}_${id + 1}.png`;
     }
 }

@@ -13,7 +13,7 @@ class Video:
         
         """
         self.video_stream = cv2.VideoCapture(video_path)
-        self.video_output = ('static/temp/video_output.mp4')
+        self.video_output = ('static/temp/{}_output.avi'.format(video_path.split('/')[2].split('_')[0]))
         self.writer = None
         self.W = None
         self.H = None
@@ -40,7 +40,7 @@ class Video:
             (self.H, self.W) = frame.shape[:2]
             
         if self.video_output is not None and self.writer is None:
-            fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+            fourcc = cv2.VideoWriter_fourcc(*"MJPG")
             self.writer = cv2.VideoWriter(self.video_output, fourcc, 15, (self.W, self.H))
 
         return dict({"total_frame" : self.totalFrames, "frame" : frame, "width" : self.W,  "height" : self.H})

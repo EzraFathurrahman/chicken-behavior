@@ -30,21 +30,21 @@
             <div class = "video-result">
                 <h2>Video</h2>
                 <video width = "400" height = "300" controls>
-                    <source src="static/temp/video_output.mp4" type="video/mp4">
+                    <source src = "{{video_source}}" type = "video/mp4">
                 </video>
             </div>
             <div class = "picture-result">
                 <h2>Grafik Pergerakan Ayam</h2>
                 <div class="slideshow-container">
                     <button class = "slide-button">
-                        <img id = "button-prev"  class = "prev-image" src = "static/img/previous-button.png" onclick = "prev_slide({{id_length}}, document.getElementById('object-id').innerHTML)">
+                        <img id = "button-prev"  class = "prev-image" src = "static/img/previous-button.png" onclick = "prev_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
                     </button>
                     <div class="mySlides">
                         <span id = "object-id" class="numbertext">ID 0</span>
-                        <img id = "object-plot" class = "image-plot" src="static/temp/0.png">
+                        <img id = "object-plot" class = "image-plot" src="{{first_image_source}}">
                     </div>
                     <button class = "slide-button">
-                        <img id = "button-next" class = "next-image" src = "static/img/next-button.png" onclick = "next_slide({{id_length}}, document.getElementById('object-id').innerHTML)">
+                        <img id = "button-next" class = "next-image" src = "static/img/next-button.png" onclick = "next_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
                     </button>
                 </div>
             </div>
