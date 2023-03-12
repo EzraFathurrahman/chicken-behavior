@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import os, random, string
 from services.backend_anomaly.detector.ssd import MobileNetSSD
 from services.backend_anomaly.inputs.video import Video
@@ -77,9 +77,10 @@ def anomaly_result():
         dataframes[i] = dataframes[i].reset_index().drop(["index"], axis = 1)
         make_plot(dataframes[i], i, session_id)
 
-    
     max_min_result = max_min_runtime(data)
     isolation_result = isolation_forest(max_min_result)
+
+    isolation_result.to_excel('static/temp/{}_anomaly_table.xlsx'.format(session_id), index = False)
 
     os.remove('static/temp/{}_{}'.format(session_id, f.filename))
     os.remove('static/temp/{}_output.avi'.format(session_id))

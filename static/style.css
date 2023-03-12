@@ -213,7 +213,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 30px;
+  padding-top: 3%;
   justify-content: center;
   align-items: center;
 }
@@ -253,7 +253,6 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 30px;
   justify-content: center;
   align-items: center;
 }
@@ -268,6 +267,19 @@ td, th {
 }
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+.download-button {
+  background-color: DodgerBlue;
+  width : 80%;
+  padding-top: 1%;
+  padding-left: 1%;
+  padding-bottom : 1%;
+  margin-top: 5%;
+  margin-left: 10%;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
 }
 .footer {
   padding-top: 10%;
