@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicken Behavior Analyzer
-    </title>
+    <title>Chicken Behavior Analyzer</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
 </head>
@@ -27,7 +26,7 @@
             </ul>
         </div>
         <div class="main-behaviour">
-            <h2>Deteksi Perilaku Agresif</h2>
+            <h2>Chicken Aggressive Behavior Detector</h2>
             <form id = "video-form" onsubmit = "check_submission_conditions(event)" method = "POST" action = '/aggressive-results' enctype = "multipart/form-data">
                 <div id = "drop-area" class = "file-drop-area">
                     <span class = "fake-btn" id = 'upload-video-box'>Upload Video</span>
@@ -35,8 +34,8 @@
                     <div class = "loader" id = "loading-animation"></div>
                     <input type = "file" id = "video-input" name = "file" class = "file-input" oninput = "change_attachment_text()">
                 </div>
-                <span id = "attachment-text">No video file attached here!</span>
-                <input type = "submit" id = "submit-button" value = "Submit" class = "btn-submit">
+                <span id = "attachment-text">No video file attached!</span>
+                <input type = "submit" id = "submit-button" value = "Run Detector" class = "btn-submit">
             </form>
         </div>
     </div>

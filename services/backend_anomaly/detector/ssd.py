@@ -109,7 +109,7 @@ class MobileNetSSD:
         fps2 = self.video_stream.get(1)
         self.tabular_output.append([datetime.now(), time.process_time(), objectID, fps2, cX, cY])
     
-    def save_output(self):
+    def save_tabular_output(self):
         data = pd.DataFrame(self.tabular_output)
         
         return data

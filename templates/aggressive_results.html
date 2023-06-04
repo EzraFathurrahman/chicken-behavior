@@ -8,7 +8,10 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <script src="{{url_for('static', filename = 'js/aggressive.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip-utils.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
 </head>
 <body>
     <div class="container">
@@ -44,10 +47,5 @@
             </div>
         </div>
     </div>
-
-    <script src="{{url_for('static', filename = 'js/aggressive.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/jszip-utils.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
 </body>
 </html>
