@@ -9,6 +9,7 @@ from services.backend_anomaly.preprocessing.max_min_runtime import max_min_runti
 from services.backend_anomaly.preprocessing.split_object_id import split_object_id
 from services.backend_anomaly.preprocessing.plot import make_plot
 from services.backend_anomaly.anomaly_detection.isolation_forest import isolation_forest
+from services.backend_aggressive.yolo_video import detect_video
 
 app = Flask(__name__)
 
@@ -41,6 +42,39 @@ def index():
 @app.route("/aggressive")
 def aggressive():
     return render_template('aggressive.html')
+
+@app.route("/aggressive-results",methods=['POST'])
+def aggressive_results():
+
+    # return render_template('aggressive-result.html')
+    f = request.files['file']
+    session_id = get_session_id()
+    f.save('static/temp/{}_{}'.format(session_id, f.filename))
+
+    detect_video('static/temp/{}_{}'.format(session_id, f.filename),session_id)
+    
+    
+
+    # while True:
+    #     read_output = video.read_next_frame()
+
+    #     if not read_output:
+    #         break
+    #     else: yolo.detect(read_output["frame"], read_output["width"], read_output["height"])
+        
+    #     video.write(read_output["frame"])
+
+    # video.stop()
+
+    convert_avi_to_mp4('static/temp/{}_yolo_output.avi'.format(session_id),
+                       'static/temp/{}_yolo_output.mp4'.format(session_id))
+
+    os.remove('static/temp/{}_{}'.format(session_id, f.filename))
+    os.remove('static/temp/{}_yolo_output.avi'.format(session_id))
+
+    return render_template('aggressive_results.html', session_id=session_id, video_source='static/temp/{}_yolo_output.mp4'.format(session_id))
+
+
 
 
 @app.route("/feed")

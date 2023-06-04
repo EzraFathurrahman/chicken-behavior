@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicken Behavior Analyzer
-    </title>
+    <title>Chicken Behavior Analyzer </title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 <body>
     <div class="container">
@@ -16,34 +17,37 @@
         </div>
         <div class="nav">
             <h2>Chicken Behavior Analyzer</h2>
-        </div>         
+        </div>       
     </div>
     <div class="content">
         <div class="menu">
             <ul>
-                <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a> </li>
+                <li><a href="{{url_for('aggressive')}}">Aggressive Behavior</a> </li>
                 <li><a href="{{url_for('feed')}}">Feeding Behavior</a> </li>
                 <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
             </ul>
         </div>
-        <div class="main-behaviour">
-            <h2>Deteksi Perilaku Agresif</h2>
-            <form id = "video-form" onsubmit = "check_submission_conditions(event)" method = "POST" action = '/aggressive-results' enctype = "multipart/form-data">
-                <div id = "drop-area" class = "file-drop-area">
-                    <span class = "fake-btn" id = 'upload-video-box'>Upload Video</span>
-                    <span class = "file-msg" id = 'drag-drop-message'>or drag and drop files here</span>
-                    <div class = "loader" id = "loading-animation"></div>
-                    <input type = "file" id = "video-input" name = "file" class = "file-input" oninput = "change_attachment_text()">
-                </div>
-                <span id = "attachment-text">No video file attached here!</span>
-                <input type = "submit" id = "submit-button" value = "Submit" class = "btn-submit">
-            </form>
+        <div class = "main-behaviour">
+            <div class = "video-result">
+                <h2>Video</h2>
+                <video width = "416" height = "416" controls>
+                    <source src = "{{video_source}}" type = "video/mp4">
+                </video>
+            </div>
+            
+            <button class = "download-button" onclick = "download_aggressive_results('{{session_id}}', {{id_length}})"><i class="fa fa-download"></i>Download Results</button>
+            <div class = "footer">
+                <footer class = "footer-content">
+                    <p>Author : Computer System and Network Institut Pertanian Bogor</p>
+                    <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
+                </footer>
+            </div>
         </div>
     </div>
 
-
     <script src="{{url_for('static', filename = 'js/aggressive.js')}}"></script>
     <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip-utils.js')}}"></script>
     <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
 </body>
 </html>
