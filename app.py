@@ -5,7 +5,7 @@ import string
 from services.backend_anomaly.detector.ssd import MobileNetSSD
 from services.backend_anomaly.inputs.video import Video
 from services.backend_anomaly.outputs.table_output import TableOutput
-from services.backend_anomaly.anomaly_detection.isolation_forest import iForest
+from services.backend_anomaly.anomaly_detection.isolation_forest import IForest
 from services.backend_aggressive.yolo_video import detect_video
 
 app = Flask(__name__)
@@ -97,7 +97,7 @@ def anomaly_result():
     table = TableOutput(data, session_id)
     table.make_plot()
 
-    isolation_forest = iForest()
+    isolation_forest = IForest()
     max_min_result = isolation_forest.find_max_min_runtime(table.get_contents())
     isolation_result = isolation_forest.detect_anomaly(max_min_result)
 

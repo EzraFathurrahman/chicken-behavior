@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 
-class iForest:
+class IForest:
     def __init__(self):
         self.model = IsolationForest(n_estimators = 100, max_samples = 'auto', contamination = float(0.1))
 
