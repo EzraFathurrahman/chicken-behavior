@@ -29,5 +29,6 @@ class IForest:
         
         data['scores'] = self.model.decision_function(data['period_detected'].values.reshape(-1, 1))
         data['anomaly_score'] = self.model.predict(data['period_detected'].values.reshape(-1, 1))
+        data['anomaly_score'] = data['anomaly_score'].apply(lambda x : 'Anomaly' if x == -1 else 'Normal')
         
         return data

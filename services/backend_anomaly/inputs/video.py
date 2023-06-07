@@ -5,13 +5,7 @@ from imutils.video import FPS
 from imutils.video import VideoStream
 
 class Video:
-    """
-    
-    """
     def __init__(self, video_path):
-        """
-        
-        """
         self.video_stream = cv2.VideoCapture(video_path)
         self.video_output = ('static/temp/{}_output.avi'.format(video_path.split('/')[2].split('_')[0]))
         self.writer = None
@@ -25,9 +19,6 @@ class Video:
         self.time = time.time()
     
     def read_next_frame(self):
-        """
-        
-        """
         frame = self.video_stream.read()
         frame = frame[1] if self.video_stream is None else frame
 
@@ -46,9 +37,6 @@ class Video:
         return dict({"total_frame" : self.totalFrames, "frame" : frame, "width" : self.W,  "height" : self.H})
 
     def write(self, frame):
-        """
-        
-        """
         if self.writer is not None:
             self.writer.write(frame)
 
