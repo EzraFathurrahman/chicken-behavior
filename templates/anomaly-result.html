@@ -22,9 +22,9 @@
     <div class="content">
         <div class="menu">
             <ul>
-                <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a> </li>
-                <li><a href="{{url_for('feed')}}">Feeding Behavior</a> </li>
-                <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
+                <li><a href="{{url_for('aggressive')}}">Chicken Agressive Behavior</a> </li>
+                <li><a href="{{url_for('feed')}}">Chicken Feeding Behavior</a> </li>
+                <li><a href="{{url_for('anomaly')}}">Chicken Movement Anomaly</a> </li>
             </ul>
         </div>
         <div class = "main-behaviour">
@@ -35,7 +35,7 @@
                 </video>
             </div>
             <div class = "picture-result">
-                <h2>Grafik Pergerakan Ayam</h2>
+                <h2>Chicken Movement Plot</h2>
                 <div class="slideshow-container">
                     <button class = "slide-button">
                         <img id = "button-prev"  class = "prev-image" src = "static/img/previous-button.png" onclick = "prev_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class = "table-result">
-                <h2>Tabel Deteksi Anomali Objek</h2>
+                <h2>Anomaly Table</h2>
                 <table>
                     <tr>
                         <th>ID</th>

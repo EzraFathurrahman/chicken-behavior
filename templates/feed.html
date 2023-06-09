@@ -21,20 +21,20 @@
     <div class="content">
         <div class="menu">
             <ul>
-                <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a> </li>
-                <li><a href="{{url_for('feed')}}">Feeding Behavior</a> </li>
-                <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
+                <li><a href="{{url_for('aggressive')}}">Chicken Agressive Behavior</a> </li>
+                <li><a href="{{url_for('feed')}}">Chicken Feeding Behavior</a> </li>
+                <li><a href="{{url_for('anomaly')}}">Chicken Movement Anomaly</a> </li>
             </ul>
         </div>
         <div class="main-behaviour">
-            <h2>Deteksi Perilaku Makan</h2>
+            <h2>Chicken Feeding Detector</h2>
             <form method="post" action="test.py" enctype="multipart/form-data">
                 <div class="file-drop-area">
                     <span class="fake-btn">Upload Video</span>
                     <span class="file-msg">or drag and drop files here</span>
                     <input type = "file" class = "file-input">
                 </div>
-                <input type="submit" value="Submit" class="btn-submit">
+                <input type="submit" value = "Run Detector" class = "btn-submit">
             </form>
         </div>
     </div>
