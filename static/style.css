@@ -106,7 +106,7 @@ a {
   transition: background-color 0.3s ease-in-out;
 }
 .btn-submit {
-  width: 1050px;
+  width: 950px;
   margin: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -138,7 +138,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1050px;
+  width: 950px;
   height: 200px;
   max-width: 100%;
   left: 10px;
@@ -185,6 +185,8 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   padding-left: 1%;
+  padding-top: 10px;
+  display: block;
 }
 .loader {
   display: none;
@@ -200,14 +202,29 @@ a {
   100% { transform: rotate(360deg); }
 }
 
-/*ANOMALY RESULT*/
+/*RESULT*/
 .video-result {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 20px;
   justify-content: center;
   align-items: center;
+}
+.data-result{
+  color: #dddddd;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #262a32;
+  border-radius: 5px;
+  padding: 10px;
+  margin:25px 95px 0;
+}
+.data-result h3{
+  width: 100%;
+  border-bottom: 1px solid #dddddd;
 }
 .picture-result {
   display: flex;

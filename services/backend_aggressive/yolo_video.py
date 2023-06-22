@@ -6,22 +6,29 @@ import time
 import cv2
 import os
 # construct the argument parse and parse the arguments
-def detect_video(videoPath,session_id):
-    # ap = argparse.ArgumentParser()
-    # ap.add_argument("-i", "--input", required=True,
-    #                 help="path to input video")
-    # ap.add_argument("-o", "--output", required=True,
-    #                 help="path to output video")
-    # ap.add_argument("-y", "--yolo", required=True,
-    #                 help="base path to YOLO directory")
-    # ap.add_argument("-c", "--confidence", type=float, default=0.5,
-    #                 help="minimum probability to filter weak detections")
-    # ap.add_argument("-t", "--threshold", type=float, default=0.3,
-    #                 help="threshold when applyong non-maxima suppression")
-    # args = vars(ap.parse_args())
 
-    # load the COCO class labels our YOLO model was trained on
-    # labelsPath = os.path.sep.join([args["yolo"], "obj.names"])
+
+#Get the average of confidences
+def calculate_average(file_path):
+    with open(file_path, 'r') as file:
+        numbers = [float(line.strip()) for line in file]
+
+    total = sum(numbers)
+    average = total / len(numbers)
+
+    return average
+
+def get_time():
+    print("{}".format(str(totalTime)))
+    return totalTime
+
+def write_analysis(file_path, average):
+    with open(file_path, 'w') as file:
+        file.write('Video Analysis\n -. Average confidences :{}\n -.Total time : {:.4f} seconds '.format(str(average),(totalTime)))
+
+
+def detect_video(videoPath,session_id,filename):
+   
     labelsPath=('services/backend_aggressive/yolo-config/obj.names')
     
     LABELS = open(labelsPath).read().strip().split("\n")
@@ -30,9 +37,8 @@ def detect_video(videoPath,session_id):
     COLORS = np.random.randint(0, 255, size=(len(LABELS), 3),
                             dtype="uint8")
     # derive the paths to the YOLO weights and model configuration
-    # weightsPath = os.path.sep.join([args["yolo"], "yolov4-416-chick.weights"])
-    # configPath = os.path.sep.join([args["yolo"], "yolov4-config.cfg"])
-    weightsPath=('services/backend_aggressive/yolo-config/yolov4-126.weights')
+    
+    weightsPath=('services/backend_aggressive/yolo-config/yolov4-416-32.weights')
     configPath=('services/backend_aggressive/yolo-config/yolov4-config.cfg')
 
 
@@ -61,7 +67,11 @@ def detect_video(videoPath,session_id):
         print("[INFO] could not determine # of frames in video")
         print("[INFO] no approx. completion time can be provided")
         total = -1
-    # loop over frames from the video file stream
+
+    #Create file for analytics
+    file = open('static/temp/{}_confidences.txt'.format(filename), 'w')
+
+    # loop over frames from the video file stream 
     while True:
         # read the next frame from the file
         (grabbed, frame) = vs.read()
@@ -117,10 +127,15 @@ def detect_video(videoPath,session_id):
                     confidences.append(float(confidence))
                     classIDs.append(classID)
 
+                    
+                    file.write('{}\n'.format(sum(confidences)/len(confidences)))
+                    
+
     # apply non-maxima suppression to suppress weak, overlapping
         # bounding boxes
         idxs = cv2.dnn.NMSBoxes(boxes, confidences, 0.5,
                                 0.3)
+        
         # ensure at least one detection exists
         if len(idxs) > 0:
             # loop over the indexes we are keeping
@@ -133,8 +148,12 @@ def detect_video(videoPath,session_id):
                 cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
                 text = "{}: {:.4f}".format(LABELS[classIDs[i]],
                                         confidences[i])
+                sumF=+(confidences[i])
+                
                 cv2.putText(frame, text, (x, y - 5),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+                
+        
 
     # check if the video writer is None
         if writer is None:
@@ -145,13 +164,19 @@ def detect_video(videoPath,session_id):
             # some information on processing single frame
             if total > 0:
                 elap = (end - start)
+                global totalTime;
+                totalTime=elap*total
                 print("[INFO] single frame took {:.4f} seconds".format(elap))
-                print("[INFO] estimated total time to finish: {:.4f}".format(
-                    elap * total))
+                print("[INFO] estimated total time to finish: {:.4f}".format(totalTime))
+                
         # write the output frame to disk
+        
         writer.write(frame)
+        
     # release the file pointers
+    
     print("[INFO] cleaning up...")
+    file.close()
     writer.release()
     vs.release()
 

@@ -8,6 +8,8 @@
     </title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
+    
+    
 </head>
 <body>
     <div class="container">
@@ -22,7 +24,7 @@
         <div class="menu">
             <ul>
                 <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a> </li>
-                <li><a href="{{url_for('feed')}}">Feeding Behavior</a> </li>
+                
                 <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
             </ul>
         </div>
@@ -35,15 +37,19 @@
                     <div class = "loader" id = "loading-animation"></div>
                     <input type = "file" id = "video-input" name = "file" class = "file-input" oninput = "change_attachment_text()">
                 </div>
-                <span id = "attachment-text">No video file attached here!</span>
+                <p id = "attachment-text">No video file attached!</p>
+                
+
                 <input type = "submit" id = "submit-button" value = "Submit" class = "btn-submit">
             </form>
         </div>
     </div>
 
-
+    
     <script src="{{url_for('static', filename = 'js/aggressive.js')}}"></script>
     <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
     <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    
 </body>
 </html>
