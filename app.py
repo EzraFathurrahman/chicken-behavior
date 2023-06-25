@@ -65,14 +65,19 @@ def aggressive_results():
     detect_video('static/temp/{}_{}'.format(session_id, f.filename),session_id,f.filename)
 
     average = calculate_average('static/temp/{}_confidences.txt'.format(f.filename))
-    write_analysis('static/temp/{}_analysis.txt'.format(session_id), average)
-    time=get_time()
+    undetected=False
+    if type(average)==str:
+        undetected=True
+        time=get_time()
+    else:
+        write_analysis('static/temp/{}_analysis.txt'.format(session_id), average)
+        time=get_time()
 
     convert_avi_to_mp4('static/temp/{}_yolo_output.avi'.format(session_id),
                        'static/temp/{}_yolo_output.mp4'.format(session_id))
     
     
-    return render_template('aggressive_results.html', session_id=session_id, video_source='static/temp/{}_yolo_output.mp4'.format(session_id),average=average,time=time)
+    return render_template('aggressive_results.html', session_id=session_id, video_source='static/temp/{}_yolo_output.mp4'.format(session_id),average=average,time=time,undetected=undetected)
     
 
 

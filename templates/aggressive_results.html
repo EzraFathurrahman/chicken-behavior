@@ -39,6 +39,8 @@
                     <source src = "{{video_source}}" type = "video/mp4">
                 </video>
             </div>
+
+            {% if undetected == False %}
             <div class="data-result">
                 <h3>Analytics</h3>
                 
@@ -48,6 +50,18 @@
 
             
             <button class = "download-button" onclick = "download_aggressive_results('{{session_id}}')"><i class="fa fa-download"></i>Download Results</button>
+            {% else %}
+
+            <div class="data-result">
+                <h3>Analytics</h3>
+                
+                <p> {{average}} </p>
+                <p>Total Time :  {{time}}  seconds</p>
+            </div>
+
+            
+            {% endif %}
+            
             <div class = "footer">
                 <footer class = "footer-content">
                     <p>Author : Computer System and Network Institut Pertanian Bogor</p>

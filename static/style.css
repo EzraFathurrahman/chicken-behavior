@@ -28,7 +28,7 @@ a {
   height: 20vh;
   display: flex;
   align-items: center;
-  gap: 320px;
+  gap: 360px;
   background-image: linear-gradient(145deg, #171d29, #252e3d, #665f7a);
   color: aliceblue;
   position: fixed;
@@ -362,7 +362,7 @@ font-size: 14px;
 .footer-content-home p {
 padding:5px;
 } 
-.anomaly_not_found {
+.not_found {
   display: flex;
   flex-direction: column;
   width: 100%;
