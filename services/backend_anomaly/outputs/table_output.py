@@ -125,10 +125,14 @@ class TableOutput:
             plt.savefig("static/temp/{}_{}.png".format(session_id, i))
             plt.close()
             
-        self.ids, dataframes = split_object_id(sort_by_object_id_and_frame(self.contents))
-        for i in self.ids:
-            dataframes[i] = dataframes[i].reset_index().drop(["index"], axis=1)
-            plot(dataframes[i], i, self.session_id)
+            if len(self.contents) != 0:  
+                self.ids, dataframes = split_object_id(sort_by_object_id_and_frame(self.contents))
+                for i in self.ids:
+                    dataframes[i] = dataframes[i].reset_index().drop(["index"], axis=1)
+                    plot(dataframes[i], i, self.session_id)
+                return True
+            else:
+                return False
     
     def get_contents(self):
         return self.contents

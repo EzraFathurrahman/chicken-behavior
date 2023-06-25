@@ -124,20 +124,21 @@ def anomaly_result():
 
     data = net.save_tabular_output()
     table = TableOutput(data, session_id)
-    table.make_plot()
+    if table.make_plot():
 
-    isolation_forest = IForest()
-    max_min_result = isolation_forest.find_max_min_runtime(table.get_contents())
-    isolation_result = isolation_forest.detect_anomaly(max_min_result)
+        isolation_forest = IForest()
+        max_min_result = isolation_forest.find_max_min_runtime(table.get_contents())
+        isolation_result = isolation_forest.detect_anomaly(max_min_result)
 
-    isolation_result.to_excel(
-        'static/temp/{}_anomaly_table.xlsx'.format(session_id), index=False)
+        isolation_result.to_excel(
+            'static/temp/{}_anomaly_table.xlsx'.format(session_id), index=False)
 
-    os.remove('static/temp/{}_{}'.format(session_id, f.filename))
-    os.remove('static/temp/{}_output.avi'.format(session_id))
+        
 
-    return render_template('anomaly-result.html', session_id=session_id, video_source='static/temp/{}_output.mp4'.format(session_id), first_image_source='static/temp/{}_0.png'.format(session_id), id_length=len(table.get_ids()), id = table.get_ids(), first=isolation_result['first_occurrence'].values.tolist(), last=isolation_result['last_occurrence'].values.tolist(), period=isolation_result['period_detected'].values.tolist(), anomaly=isolation_result['anomaly_score'].values.tolist())
+        return render_template('anomaly-result.html', session_id=session_id, video_source='static/temp/{}_output.mp4'.format(session_id), first_image_source='static/temp/{}_0.png'.format(session_id), id_length=len(table.get_ids()), id = table.get_ids(), first=isolation_result['first_occurrence'].values.tolist(), last=isolation_result['last_occurrence'].values.tolist(), period=isolation_result['period_detected'].values.tolist(), anomaly=isolation_result['anomaly_score'].values.tolist())
 
+    else:
+        return render_template('anomaly-result.html', session_id=session_id, video_source='static/temp/{}_output.mp4'.format(session_id), first_image_source= False)
     
 
    
