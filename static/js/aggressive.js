@@ -19,15 +19,14 @@ async function check_submission_conditions(event){
 
 
 
-function download_aggressive_results(session_id){
+function download_aggressive_results(session_id,id_length){
     var zip = new JSZip();
     
     
 
     JSZipUtils.getBinaryContent(`static/temp/${session_id}_yolo_output.mp4`, function (err, data) {
         zip.file("video_output.mp4", data, {binary:true});
-        var link = document.createElement('a');
-        link.href = window.URL.createObjectURL(content);
+        
 
         zip.generateAsync({type:"blob"}).then(function(content) {
             var link = document.createElement('a');

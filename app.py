@@ -5,16 +5,14 @@ import random
 import string
 from services.backend_anomaly.detector.ssd import MobileNetSSD
 from services.backend_anomaly.inputs.video import Video
-from services.backend_anomaly.preprocessing.sort import sort
-from services.backend_anomaly.preprocessing.max_min_runtime import max_min_runtime
-from services.backend_anomaly.preprocessing.split_object_id import split_object_id
-from services.backend_anomaly.preprocessing.plot import make_plot
-from services.backend_anomaly.anomaly_detection.isolation_forest import isolation_forest
+
+
 from services.backend_aggressive.yolo_video import detect_video
 from services.backend_aggressive.yolo_video import write_analysis
 from services.backend_aggressive.yolo_video import calculate_average
 from services.backend_aggressive.yolo_video import get_time
-
+from services.backend_anomaly.outputs.table_output import TableOutput
+from services.backend_anomaly.anomaly_detection.isolation_forest import IForest
 
 app = Flask(__name__)
 
@@ -124,20 +122,22 @@ def anomaly_result():
     convert_avi_to_mp4('static/temp/{}_output.avi'.format(session_id),
                        'static/temp/{}_output.mp4'.format(session_id))
 
-    data = net.save_output()
+    data = net.save_tabular_output()
+    table = TableOutput(data, session_id)
+    table.make_plot()
 
-    data_sorted = sort(data)
-    ids, dataframes = split_object_id(data_sorted)
-    for i in ids:
-        dataframes[i] = dataframes[i].reset_index().drop(["index"], axis=1)
-        make_plot(dataframes[i], i, session_id)
-
-    max_min_result = max_min_runtime(data)
-    isolation_result = isolation_forest(max_min_result)
+    isolation_forest = IForest()
+    max_min_result = isolation_forest.find_max_min_runtime(table.get_contents())
+    isolation_result = isolation_forest.detect_anomaly(max_min_result)
 
     isolation_result.to_excel(
         'static/temp/{}_anomaly_table.xlsx'.format(session_id), index=False)
 
+    os.remove('static/temp/{}_{}'.format(session_id, f.filename))
+    os.remove('static/temp/{}_output.avi'.format(session_id))
+
+    return render_template('anomaly-result.html', session_id=session_id, video_source='static/temp/{}_output.mp4'.format(session_id), first_image_source='static/temp/{}_0.png'.format(session_id), id_length=len(table.get_ids()), id = table.get_ids(), first=isolation_result['first_occurrence'].values.tolist(), last=isolation_result['last_occurrence'].values.tolist(), period=isolation_result['period_detected'].values.tolist(), anomaly=isolation_result['anomaly_score'].values.tolist())
+
     
 
-    return render_template('anomaly-result.html', session_id=session_id, video_source='static/temp/{}_output.mp4'.format(session_id), first_image_source='static/temp/{}_0.png'.format(session_id), id_length=len(ids), id=ids, first=isolation_result['first_occurrence'].values.tolist(), last=isolation_result['last_occurrence'].values.tolist(), period=isolation_result['period_detected'].values.tolist(), anomaly=isolation_result['anomaly_score'].values.tolist())
+   

@@ -5,6 +5,7 @@ import imutils
 import time
 import cv2
 import os
+import math
 # construct the argument parse and parse the arguments
 
 
@@ -12,19 +13,27 @@ import os
 def calculate_average(file_path):
     with open(file_path, 'r') as file:
         numbers = [float(line.strip()) for line in file]
-
-    total = sum(numbers)
-    average = total / len(numbers)
-
-    return average
+    if len(numbers)==0:
+        average="No aggressive behavior detected"
+        return average
+    else:
+        total = sum(numbers)
+        average = total / len(numbers)
+        return average
 
 def get_time():
     print("{}".format(str(totalTime)))
     return totalTime
 
+def is_not_number_or_float(value):
+    return not isinstance(value, (float, int)) or math.isnan(value)
+
 def write_analysis(file_path, average):
     with open(file_path, 'w') as file:
-        file.write('Video Analysis\n -. Average confidences :{}\n -.Total time : {:.4f} seconds '.format(str(average),(totalTime)))
+        if average==0:
+            file.write('Video Analysis\n No aggressive behavior detected -.Total time : {:.2f} seconds '.format(totalTime))
+        else:
+            file.write('Video Analysis\n -. Average confidences :{}\n -.Total time : {:.4f} seconds '.format(str(average),(totalTime)))
 
 
 def detect_video(videoPath,session_id,filename):
@@ -38,7 +47,7 @@ def detect_video(videoPath,session_id,filename):
                             dtype="uint8")
     # derive the paths to the YOLO weights and model configuration
     
-    weightsPath=('services/backend_aggressive/yolo-config/yolov4-416-32.weights')
+    weightsPath=('services/backend_aggressive/yolo-config/416x416-64sdv-3-fold.weights')
     configPath=('services/backend_aggressive/yolo-config/yolov4-config.cfg')
 
 

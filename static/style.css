@@ -19,7 +19,7 @@ a {
     height: 20vh;
     display: flex;
     align-items: center;
-    gap: 400px;
+    gap: 320px;
     background-image: linear-gradient(145deg, #171d29, #252e3d, #665f7a);
     color: aliceblue;
     position: fixed;
@@ -68,12 +68,15 @@ a {
   padding: 10px;
   border-radius: 5px;
   color: aliceblue;
+  width:100%;
 }
+
 .menu li:hover {
   background-color: #665f7a;
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.5s ease-in-out;
+  width:100%;
 }
 
 /* MAIN CONTENT */
@@ -307,4 +310,23 @@ tr:nth-child(even) {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  font-size: 14px;
+}
+.footer-content p{
+  padding:5px;
+}
+
+.footer-home {
+  padding-top: 20%;
+  padding-bottom: 10%;
+}
+.footer-content-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+}
+.footer-content-home p {
+  padding:5px;
 }

@@ -32,8 +32,8 @@
             <h2>Deteksi Perilaku Agresif</h2>
             <form id = "video-form" onsubmit = "check_submission_conditions(event)" method = "POST" action = '/aggressive-results' enctype = "multipart/form-data">
                 <div id = "drop-area" class = "file-drop-area">
-                    <span class = "fake-btn" id = 'upload-video-box'>Upload Video</span>
-                    <span class = "file-msg" id = 'drag-drop-message'>or drag and drop files here</span>
+                    <span class = "fake-btn" id = 'upload-video-box'>Upload Video here</span>
+                    <span class = "file-msg" id = 'drag-drop-message'>by clicking this area</span>
                     <div class = "loader" id = "loading-animation"></div>
                     <input type = "file" id = "video-input" name = "file" class = "file-input" oninput = "change_attachment_text()">
                 </div>
