@@ -330,3 +330,11 @@ tr:nth-child(even) {
 .footer-content-home p {
   padding:5px;
 }
+.anomaly_not_found {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 3%;
+  justify-content: center;
+  align-items: center;
+}

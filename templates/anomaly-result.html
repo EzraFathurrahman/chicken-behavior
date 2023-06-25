@@ -34,49 +34,55 @@
                     <source src = "{{video_source}}" type = "video/mp4">
                 </video>
             </div>
-            <div class = "picture-result">
-                <h2>Grafik Pergerakan Ayam</h2>
-                <div class="slideshow-container">
-                    <button class = "slide-button">
-                        <img id = "button-prev"  class = "prev-image" src = "static/img/previous-button.png" onclick = "prev_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
-                    </button>
-                    <div class="mySlides">
-                        <span id = "object-id" class="numbertext">ID 0</span>
-                        <img id = "object-plot" class = "image-plot" src="{{first_image_source}}">
+            {% if first_image_source != False %}
+                <div class = "picture-result">
+                    <h2>Grafik Pergerakan Ayam</h2>
+                    <div class="slideshow-container">
+                        <button class = "slide-button">
+                            <img id = "button-prev"  class = "prev-image" src = "static/img/previous-button.png" onclick = "prev_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
+                        </button>
+                        <div class="mySlides">
+                            <span id = "object-id" class="numbertext">ID 0</span>
+                            <img id = "object-plot" class = "image-plot" src="{{first_image_source}}">
+                        </div>
+                        <button class = "slide-button">
+                            <img id = "button-next" class = "next-image" src = "static/img/next-button.png" onclick = "next_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
+                        </button>
                     </div>
-                    <button class = "slide-button">
-                        <img id = "button-next" class = "next-image" src = "static/img/next-button.png" onclick = "next_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
-                    </button>
                 </div>
-            </div>
-            <div class = "table-result">
-                <h2>Tabel Deteksi Anomali Objek</h2>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>First Occurance</th>
-                        <th>Last Occurance</th>
-                        <th>Detection Time</th>
-                        <th>Anomaly</th>
-                    </tr>
-                    {% for i in range(id_length) %}
-                    <tr>
-                        <td>{{id[i]}}</td>
-                        <td>{{first[i]}}</td>
-                        <td>{{last[i]}}</td>
-                        <td>{{period[i]}}</td>
-                        <td>{{anomaly[i]}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <button class = "download-button" onclick = "download_anomaly_results('{{session_id}}', {{id_length}})"><i class="fa fa-download"></i>Download Results</button>
-            <div class = "footer">
-                <footer class = "footer-content">
-                    <p>Author : Computer System and Network Institut Pertanian Bogor</p>
-                    <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
-                </footer>
-            </div>
+                <div class = "table-result">
+                    <h2>Tabel Deteksi Anomali Objek</h2>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Occurance</th>
+                            <th>Last Occurance</th>
+                            <th>Detection Time</th>
+                            <th>Anomaly</th>
+                        </tr>
+                        {% for i in range(id_length) %}
+                        <tr>
+                            <td>{{id[i]}}</td>
+                            <td>{{first[i]}}</td>
+                            <td>{{last[i]}}</td>
+                            <td>{{period[i]}}</td>
+                            <td>{{anomaly[i]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <button class = "download-button" onclick = "download_anomaly_results('{{session_id}}', {{id_length}})"><i class="fa fa-download"></i>Download Results</button>
+                <div class = "footer">
+                    <footer class = "footer-content">
+                        <p>Author : Computer System and Network Institut Pertanian Bogor</p>
+                        <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
+                    </footer>
+                </div>
+            {% else %}
+                <div class = "anomaly_not_found">
+                    <h2>No Anomaly Detected</h2>
+                </div>
+            {% endif %}
         </div>
     </div>
 
