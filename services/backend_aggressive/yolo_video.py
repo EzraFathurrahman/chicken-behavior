@@ -22,8 +22,8 @@ def calculate_average(file_path):
         return average
 
 def get_time():
-    print("{}".format(str(totalTime)))
-    return totalTime
+    time=("{} minutes {} seconds ".format(int(tMinutes),tSeconds))
+    return time
 
 def is_not_number_or_float(value):
     return not isinstance(value, (float, int)) or math.isnan(value)
@@ -33,7 +33,7 @@ def write_analysis(file_path, average):
         if average==0:
             file.write('Video Analysis\n No aggressive behavior detected -.Total time : {:.2f} seconds '.format(totalTime))
         else:
-            file.write('Video Analysis\n -. Average confidences :{}\n -.Total time : {:.4f} seconds '.format(str(average),(totalTime)))
+            file.write('Video Analysis\n -. Average confidences :{}\n -.Total time : {} minutes {:.2f} seconds '.format(str(average),(tMinutes),(tSeconds)))
 
 
 def detect_video(videoPath,session_id,filename):
@@ -174,9 +174,14 @@ def detect_video(videoPath,session_id,filename):
             if total > 0:
                 elap = (end - start)
                 global totalTime;
+                global tMinutes;
+                global tSeconds;
                 totalTime=elap*total
+                tMinutes=int(totalTime)/60
+                tSeconds=int(totalTime)%60
+                
                 print("[INFO] single frame took {:.4f} seconds".format(elap))
-                print("[INFO] estimated total time to finish: {:.4f}".format(totalTime))
+                print("[INFO] estimated total time to finish: {} minutes {} seconds ".format(int(tMinutes),tSeconds))
                 
         # write the output frame to disk
         

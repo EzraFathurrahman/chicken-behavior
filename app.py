@@ -80,11 +80,6 @@ def aggressive_results():
     return render_template('aggressive_results.html', session_id=session_id, video_source='static/temp/{}_yolo_output.mp4'.format(session_id),average=average,time=time,undetected=undetected)
     
 
-
-
-
-
-
 @app.route("/anomaly")
 def anomaly():
     return render_template('anomaly.html')
