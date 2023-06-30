@@ -55,6 +55,9 @@ def detect_video(videoPath,session_id,filename):
     # load our YOLO object detector trained on COCO dataset (80 classes)
     # and determine only the *output* layer names that we need from YOLO
     print("[INFO] loading YOLO from disk...")
+    
+    start = time.time()
+
     net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
     ln = net.getLayerNames()
     ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
@@ -80,6 +83,9 @@ def detect_video(videoPath,session_id,filename):
     #Create file for analytics
     file = open('static/temp/{}_confidences.txt'.format(filename), 'w')
 
+    global totalTime;
+    global tMinutes;
+    global tSeconds;
     # loop over frames from the video file stream 
     while True:
         # read the next frame from the file
@@ -98,9 +104,11 @@ def detect_video(videoPath,session_id,filename):
         blob = cv2.dnn.blobFromImage(frame, 1 / 255.0, (416, 416),
                                     swapRB=True, crop=False)
         net.setInput(blob)
-        start = time.time()
+        # start = time.time()
         layerOutputs = net.forward(ln)
-        end = time.time()
+        # end = time.time()
+
+
         # initialize our lists of detected bounding boxes, confidences,
         # and class IDs, respectively
         boxes = []
@@ -171,23 +179,20 @@ def detect_video(videoPath,session_id,filename):
             writer = cv2.VideoWriter('static/temp/{}_yolo_output.avi'.format(session_id), fourcc, 30,
                                     (frame.shape[1], frame.shape[0]), True)
             # some information on processing single frame
-            if total > 0:
-                elap = (end - start)
-                global totalTime;
-                global tMinutes;
-                global tSeconds;
-                totalTime=elap*total
-                tMinutes=int(totalTime)/60
-                tSeconds=int(totalTime)%60
-                
-                print("[INFO] single frame took {:.4f} seconds".format(elap))
-                print("[INFO] estimated total time to finish: {} minutes {} seconds ".format(int(tMinutes),tSeconds))
+
+            
                 
         # write the output frame to disk
         
         writer.write(frame)
         
     # release the file pointers
+    end = time.time()
+    totalTime = (end - start)
+                
+    
+    tMinutes=int(totalTime)/60
+    tSeconds=int(totalTime)%60
     
     print("[INFO] cleaning up...")
     file.close()
