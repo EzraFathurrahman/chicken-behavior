@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicken Behavior Detector </title>
+    <title>Chicken Behavior Analyzer </title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="{{url_for('static', filename = 'js/anomaly.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/jszip-utils.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
+    
 </head>
+
 <body>
     <div class="container">
+
+    
+    <div class="navbar">
         <div class = "logo-container">
             <a href="{{url_for('index')}}" class="logo"><img src="static/img/logo.png" alt="Logo IPB"></a>
         </div>
         <div class="nav">
-            <h2>Chicken Behavior Detector</h2>
+            <h2>Chicken Behavior Analyzer</h2>
         </div>       
     </div>
     <div class="content">
         <div class="menu">
             <ul>
                 <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a> </li>
-                <li><a href="{{url_for('feed')}}">Feeding Behavior</a> </li>
+                
                 <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
             </ul>
         </div>
@@ -37,8 +38,9 @@
                     <source src = "{{video_source}}" type = "video/mp4">
                 </video>
             </div>
+            {% if first_image_source != False %}
             <div class = "picture-result">
-                <h2>Grafik Pergerakan Ayam</h2>
+                <h2>Chicken Movement Plot</h2>
                 <div class="slideshow-container">
                     <button class = "slide-button">
                         <img id = "button-prev"  class = "prev-image" src = "static/img/previous-button.png" onclick = "prev_slide({{id_length}}, document.getElementById('object-id').innerHTML, '{{session_id}}')">
@@ -53,7 +55,7 @@
                 </div>
             </div>
             <div class = "table-result">
-                <h2>Tabel Deteksi Anomali Objek</h2>
+                <h2>Anomaly Table</h2>
                 <table>
                     <tr>
                         <th>ID</th>
@@ -80,7 +82,18 @@
                     <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
                 </footer>
             </div>
+            {% else %}
+                <div class = "not_found">
+                    <h2>No Anomaly Detected</h2>
+                </div>
+            {% endif %}
         </div>
     </div>
+</div>
+
+    <script src="{{url_for('static', filename = 'js/anomaly.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip-utils.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
 </body>
 </html>

@@ -1,38 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicken Behavior Detector
-    </title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
-    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <div class = "logo-container">
-            <a href="{{url_for('index')}}" class="logo"><img src="static/img/logo.png" alt="Logo IPB"></a>
-        </div>
-        <div class="nav">
-            <h2>Chicken Behavior Detector</h2>
-        </div>        
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chicken Behavior Analyzer</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename = 'img/favicon.ico') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename = 'style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- <div class="container">
+      <div class="logo-container">
+        <a href="{{url_for('index')}}" class="logo"
+          ><img src="static/img/logo.png" alt="Logo IPB"
+        /></a>
+      </div>
+      <div class="nav">
+        <h2>Chicken Behavior Analyzer</h2>
+      </div>
     </div>
     <div class="content">
-        <div class="menu">
-            <ul>
-                <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a></li>
-                <li><a href="{{url_for('feed')}}">Feeding Behavior</a> </li>
-                <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
-            </ul>
-        </div>
-        <div class="main">
-            <h3>Halo Selamat datang di Web Pendeteksi Perilaku Ayam</h3>
-            <p>Apa yang bisa kami bantu ?</p>
-            <button class="btn"><a href="{{url_for('aggressive')}}">Deteksi Agresivitas</a>  </button>
-            <button class="btn"><a href="{{url_for('feed')}}">Deteksi Makan</a></button>
-            <button class="btn"><a href="{{url_for('anomaly')}}">Deteksi Anomali Pergerakan</a></button>
-        </div>
+      <div class="menu">
+        <ul>
+          <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a></li>
+         
+          <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a></li>
+        </ul>
+      </div>
+      <div class="main">
+        <h3>Halo Selamat datang di Web Pendeteksi Perilaku Ayam</h3>
+        <p>Apa yang bisa kami bantu ?</p>
+        <button class="btn">
+          <a href="{{url_for('aggressive')}}">Deteksi Agresivitas</a>
+        </button>
+        
+        <button class="btn">
+          <a href="{{url_for('anomaly')}}">Deteksi Anomali Pergerakan</a>
+        </button>
+
+        <div class = "footer-home">
+          <footer class = "footer-content-home">
+              <p>Author : Computer System and Network Institut Pertanian Bogor</p>
+              <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
+          </footer>
+      </div>
+      </div>
+      
+    </div> -->
+
+<div class="container">
+    <div class="navbar">
+      <div class="logo-container">
+        <a href="{{url_for('index')}}" class="logo"
+          ><img src="static/img/logo.png" alt="Logo IPB"
+        /></a>
+      </div>
+      <div class="nav">
+        <h2>Chicken Behavior Analyzer</h2>
+      </div>
     </div>
-</body>
+    <div class="content">
+      <div class="menu">
+        <ul>
+          <li><a href="{{url_for('aggressive')}}">Agressive Behavior</a></li>
+         
+          <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a></li>
+        </ul>
+      </div>
+      <div class="main">
+        <h3>Welcome to Chicken Behavior Analyzer</h3>
+        <p>How can we help you?</p>
+        <div class="buttons">
+          <button class="btn">
+            <a href="{{url_for('aggressive')}}">Detect Chicken Aggressivity</a>
+          </button>
+          
+          <button class="btn">
+            <a href="{{url_for('anomaly')}}">Detect Chicken Anomaly Behavior</a>
+          </button>
+        </div>
+
+        <div class = "footer-home">
+          <footer class = "footer-content-home">
+              <p>Author : Computer System and Network Institut Pertanian Bogor</p>
+              <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
+          </footer>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+  </body>
 </html>

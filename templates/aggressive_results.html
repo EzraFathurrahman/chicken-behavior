@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Behavior Analyzer </title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+</head>
+<body>
+
+    <div class="container">
+
+
+    
+    <div class="navbar">
+        <div class = "logo-container">
+            <a href="{{url_for('index')}}" class="logo"><img src="static/img/logo.png" alt="Logo IPB"></a>
+        </div>
+        <div class="nav">
+            <h2>Chicken Behavior Analyzer</h2>
+        </div>       
+    </div>
+    <div class="content">
+        <div class="menu">
+            <ul>
+                <li><a href="{{url_for('aggressive')}}">Aggressive Behavior</a> </li>
+                
+                <li><a href="{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
+            </ul>
+        </div>
+        <div class = "main-behaviour">
+            <div class = "video-result">
+                <h2>Video</h2>
+                <video width = "416" height = "416" controls>
+                    <source src = "{{video_source}}" type = "video/mp4">
+                </video>
+            </div>
+
+            {% if undetected == False %}
+            <div class="data-result">
+                <h3>Analytics</h3>
+                
+                <p>Average Confidence : {{average}} </p>
+                <p>Total Time :  {{time}}  </p>
+            </div>
+
+            
+            <button class = "download-button" onclick = "download_aggressive_results('{{session_id}}')"><i class="fa fa-download"></i>Download Results</button>
+            {% else %}
+
+            <div class="data-result">
+                <h3>Analytics</h3>
+                
+                <p> {{average}} </p>
+                <p>Total Time :  {{time}}  </p>
+            </div>
+
+            
+            {% endif %}
+            
+            <div class = "footer">
+                <footer class = "footer-content">
+                    <p>Author : Computer System and Network Institut Pertanian Bogor</p>
+                    <p>Website : <u><a href = "http://cs.ipb.ac.id" target = "_blank" style = "color : black">cs.ipb.ac.id</a></u></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <audio id="ringtone" src="{{ url_for('static', filename='js/ring.mp3') }}"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script src="{{url_for('static', filename = 'js/aggressive.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip-utils.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script src="{{url_for('static', filename = 'js/alert.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/zip.js')}}"></script>
+</body>
+</html>

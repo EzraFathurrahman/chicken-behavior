@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chicken Behavior Detector
+    <title>Chicken Behavior Analyzer
     </title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'img/favicon.ico') }}">
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename = 'style.css') }}">
-    <script src="{{url_for('static', filename = 'js/anomaly.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
-    <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
+    
 </head>
 <body>
     <div class="container">
+
+    
+    <div class="navbar">
         <div class = "logo-container">
             <a href="{{url_for('index')}}" class="logo"><img src="static/img/logo.png" alt="Logo IPB"></a>
         </div>
         <div class="nav">
-            <h2>Chicken Behavior Detector</h2>
+            <h2>Chicken Behavior Analyzer</h2>
         </div>         
     </div>
     <div class="content">
         <div class="menu">
             <ul>
                 <li><a href = "{{url_for('aggressive')}}">Agressive Behavior</a> </li>
-                <li><a href = "{{url_for('feed')}}">Feeding Behavior</a> </li>
+                
                 <li><a href = "{{url_for('anomaly')}}">Anomaly Behavior</a> </li>
             </ul>
         </div>
         <div class = "main-behaviour">
-            <h2>Deteksi Anomali Pergerakan Ayam</h2>
+            <h2>Detect Chicken Anomaly Behavior</h2>
             <form id = "video-form" onsubmit = "check_submission_conditions(event)" method = "post" action = '/anomaly-result' enctype = "multipart/form-data">
                 <div id = "drop-area" class = "file-drop-area">
                     <span class = "fake-btn" id = 'upload-video-box'>Upload Video</span>
@@ -39,10 +40,16 @@
                     <input type = "file" id = "video-input" name = "file" class = "file-input" oninput = "change_attachment_text()">
                 </div>
                 <span id = "attachment-text">No video file attached!</span>
-                <input type = "submit" id = "submit-button" value = "Submit" class = "btn-submit">
+                <input type = "submit" id = "submit-button" value = "Run Detector" class = "btn-submit">
             </form>
         </div>
     </div>
+</div>
+    
+
+    <script src="{{url_for('static', filename = 'js/anomaly.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jszip.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/FileSaver.js')}}"></script>
     
 </body>
 </html>
