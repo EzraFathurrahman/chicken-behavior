@@ -32,18 +32,18 @@
             </ul>
         </div>
         <div class="main-behaviour">
-            <h2>Deteksi Perilaku Agresif</h2>
+            <h2>Detect Chicken Aggressivity</h2>
             <form id = "video-form" onsubmit = "check_submission_conditions(event)" method = "POST" action = '/aggressive-results' enctype = "multipart/form-data">
                 <div id = "drop-area" class = "file-drop-area">
-                    <span class = "fake-btn" id = 'upload-video-box'>Upload Video here</span>
-                    <span class = "file-msg" id = 'drag-drop-message'>by clicking this area</span>
+                    <span class = "fake-btn" id = 'upload-video-box'>Upload Video</span>
+                    <span class = "file-msg" id = 'drag-drop-message'>or drag and drop files here</span>
                     <div class = "loader" id = "loading-animation"></div>
                     <input type = "file" id = "video-input" name = "file" class = "file-input" oninput = "change_attachment_text()">
                 </div>
                 <p id = "attachment-text">No video file attached!</p>
                 
 
-                <input type = "submit" id = "submit-button" value = "Submit" class = "btn-submit">
+                <input type = "submit" id = "submit-button" value = "Run Detector" class = "btn-submit">
             </form>
         </div>
     </div>
