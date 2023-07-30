@@ -1,18 +1,6 @@
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 
-<<<<<<< HEAD
-def isolation_forest(file_path):
-    data = file_path
-
-    model = IsolationForest(n_estimators = 100, max_samples = 'auto', contamination = float(0.1))
-    model.fit(data['period_detected'].values.reshape(-1, 1))
-    
-    data['scores'] = model.decision_function(data['period_detected'].values.reshape(-1, 1))
-    data['anomaly_score'] = model.predict(data['period_detected'].values.reshape(-1, 1))
-    
-    return data
-=======
 class IForest:
     def __init__(self):
         self.model = IsolationForest(n_estimators = 100, max_samples = 'auto', contamination = float(0.1))
@@ -44,4 +32,3 @@ class IForest:
         data['anomaly_score'] = data['anomaly_score'].apply(lambda x : 'Anomaly' if x == -1 else 'Normal')
         
         return data
->>>>>>> a8fe885d4563f15b993d8dfc3e2937954829c7e5
