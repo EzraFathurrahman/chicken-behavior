@@ -15,6 +15,8 @@ There are two main detection features on this website:
 - Framework: Flask
 
 ## Chicken Aggressivity Detection
+This feature is a solution provided to answer one of the animal welfare challenge which is to detect chicken aggressive behavior and helping the cattleman to supervise the chicken by preventing them from hurting each other.
+This feature implement YOLOv4 algorithm and loading the models which are the weight, config, and labels then processing video input through them, the output of this feature is labeled video and short analysis about it.
 
 ## Chicken Movement Anomaly Detection
 The purpose of this feature is to detect whether a chicken with an anomaly exist in the inserted video. 
